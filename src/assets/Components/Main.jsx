@@ -6,6 +6,7 @@ function Main() {
    
    <main>
     <h4>LOS MAS VENDIDOS:</h4>
+    {/* muestra los productos "más vendidos" de la tienda */}
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner ">
           <div className="carousel-item carousel-ventas active">

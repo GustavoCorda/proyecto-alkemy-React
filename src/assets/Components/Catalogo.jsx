@@ -9,9 +9,10 @@ function Catalogo({
   fnHandleClick,
   fnHandleClick2,
   setProductosSeleccionados,
-  productosSeleccionados,
-  productoSumado  
+  productosSeleccionados 
 }) {
+
+  // pequeña lista de productos con sus datos 
   const catalogo = [
     { id: 1, nombre: "PIZARRA MAGICA", precio: 7500, imagen: imgPizarra },
     { id: 2, nombre: "MATE Y TERMO STANLEY", precio: 65000, imagen: imgTermo },
@@ -21,7 +22,10 @@ function Catalogo({
   ];
 
 
-
+// Manejador del boton Agregar productos desde el catalogo
+// setProductosSeleccionados le aplicamos elprevProductos, lo que hace es tomar el valor de produtosSeleccionados anterior
+// creamos la const existente ,mediante .find verificamos si elvalor de productoSeleccionados es estrictamente igual al producto ingresado que se toma desde el onClick handleAgregar(producto) , luego
+// verifica si ya existe, actualiza la cantidad con un map y si no existe agrega con cantidad igual a 1
 const handleAgregar = (producto) => {
   setProductosSeleccionados((prevProductos) => {
     const existente = prevProductos.find((p) => p.nombre === producto.nombre);
@@ -41,6 +45,9 @@ const handleAgregar = (producto) => {
 
   fnHandleClick(producto.nombre);
 };
+
+
+// Manejador del onClick 
 
 const handleQuitar = (producto) => {
   setProductosSeleccionados((prevProductos) => {
@@ -62,10 +69,9 @@ const handleQuitar = (producto) => {
   fnHandleClick2(producto.nombre);
 };
 
-// ... (resto de tu código)
 
+  // Calculo del precio total delos productos agregados usando un .reduce para la sumatoria y un acumulador para ir actualizando,iniciando el aumulador en 0 
 
-  // Calcular el precio total directamente en Catalogo.jsx
   const calcularPrecioTotal = () => {
     return productosSeleccionados.reduce(
       (acc, producto) => acc + producto.precio * producto.cantidad,
@@ -77,6 +83,8 @@ const handleQuitar = (producto) => {
     <>
       <h2>CATALOGO</h2>
       <div className="lista-de-productos">
+
+        {/* se hace un mapeo de los productos y se muestran en pantalla */}
         {catalogo.map((producto) => (
           <div key={producto.id} className="producto-en-catalogo">
             <img src={producto.imagen} alt="" />
@@ -86,10 +94,6 @@ const handleQuitar = (producto) => {
             <button className="boton-catalogo"  onClick={() => handleQuitar(producto)}>-</button>      
           </div>
         ))}
-      </div>
-
-      <div className="precio-total">
-        <p className="ocultar">Precio Total: ${calcularPrecioTotal()}</p>
       </div>
     </>
   );

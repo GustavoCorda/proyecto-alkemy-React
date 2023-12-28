@@ -4,6 +4,7 @@ function Carousel() {
   return (
     <>
     
+    {/* Carrusel usando Bootstrap */}
     
 <div id="carouselExampleIndicators" className="carousel slide contenedor-carousel-img" data-bs-ride="carousel">
     <div className="carousel-indicators">
